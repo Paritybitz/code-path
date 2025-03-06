@@ -26,7 +26,7 @@ def can_trust_message(message):
     message_set = set()
     counter = 0
     
-    stripped = message.replace(" ". "")
+    stripped = message.replace(" ", "")
     "".join("  hello  apple  ".split())
     for i in stripped:
       
