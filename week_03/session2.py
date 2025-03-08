@@ -9,12 +9,18 @@ def manage_stage_changes(changes):
     canceled_stack = []
 
     for change in changes:
-        if (changes[change] == "Cancel"):
+        if (change == "Cancel"):
             canceled = schedule_stack.pop()
-            canceled_stack.add(canceled)
-        elif (changes[change] == "Reschedule"):
+            canceled_stack.append(canceled)
+        elif (change == "Reschedule"):
             cancel = canceled_stack.pop()
-            schedule_stack.add(cancel)
+            schedule_stack.append(cancel)
         else:
-            event=changes[change][9]
-            schedule_stack.add(event)
+            event = change.split(" ", 1)[1]
+            schedule_stack.append(event)
+    
+    return schedule_stack
+
+print(manage_stage_changes(["Schedule A", "Schedule B", "Cancel", "Schedule C", "Reschedule", "Schedule D"]))  
+print(manage_stage_changes(["Schedule A", "Cancel", "Schedule B", "Cancel", "Reschedule", "Cancel"])) 
+print(manage_stage_changes(["Schedule X", "Schedule Y", "Cancel", "Cancel", "Schedule Z"]))
